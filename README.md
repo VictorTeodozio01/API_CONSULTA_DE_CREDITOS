@@ -29,13 +29,12 @@ $ ng serve
 ```
 ### Portanto se der erro execute os comandos separadamente em cada pasta:
 
-
-#### Testes Automatizado
+#### creditos-backend 
 
 ```bash
+# Testes Automatizado
 $ mvn clean package
 ```
-#### creditos-backend 
 ```bash
 $ mvn spring-boot:run
 
