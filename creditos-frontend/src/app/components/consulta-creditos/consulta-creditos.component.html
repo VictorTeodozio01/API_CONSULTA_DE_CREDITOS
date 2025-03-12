@@ -1,0 +1,53 @@
+<div class="container">
+  <h2>Consulta de Créditos Constituídos</h2>
+
+  <div class="form-group">
+    <label for="numeroNfse">Número da NFS-e:</label>
+    <input id="numeroNfse" [(ngModel)]="numeroNfse" placeholder="Digite o número da NFS-e" class="form-control">
+    <button (click)="consultarPorNfse()" class="btn btn-primary">Consultar por NFS-e</button>
+  </div>
+
+  <div class="form-group">
+    <label for="numeroCredito">Número do Crédito:</label>
+    <input id="numeroCredito" [(ngModel)]="numeroCredito" placeholder="Digite o número do crédito" class="form-control">
+    <button (click)="consultarPorCredito()" class="btn btn-primary">Consultar por Crédito</button>
+  </div>
+
+  <div *ngIf="mensagemErro" class="alert alert-danger">
+    {{ mensagemErro }}
+  </div>
+
+  <div *ngIf="creditos.length > 0">
+    <h3>Resultados:</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Número do Crédito</th>
+          <th>Número da NFS-e</th>
+          <th>Data de Constituição</th>
+          <th>Valor do ISSQN</th>
+          <th>Tipo de Crédito</th>
+          <th>Simples Nacional</th>
+          <th>Alíquota</th>
+          <th>Valor Faturado</th>
+          <th>Valor Dedução</th>
+          <th>Base de Cálculo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let credito of creditos">
+          <td>{{ credito.numeroCredito }}</td>
+          <td>{{ credito.numeroNfse }}</td>
+          <td>{{ credito.dataConstituicao | date:'dd/MM/yyyy' }}</td>
+          <td>{{ credito.valorIssqn | currency:'BRL' }}</td>
+          <td>{{ credito.tipoCredito }}</td>
+          <td>{{ credito.simplesNacional ? 'Sim' : 'Não' }}</td>
+          <td>{{ credito.aliquota }}%</td>
+          <td>{{ credito.valorFaturado | currency:'BRL' }}</td>
+          <td>{{ credito.valorDeducao | currency:'BRL' }}</td>
+          <td>{{ credito.baseCalculo | currency:'BRL' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

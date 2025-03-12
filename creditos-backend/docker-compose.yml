@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_creditos
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: creditosdb
+    ports:
+      - "5432:5432"
+  backend:
+    build: ../creditos-backend  
+    container_name: creditos_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
